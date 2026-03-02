@@ -89,7 +89,7 @@ Type:
 IntType:
   prefix=INT_PREFIX ({infer IntArray} '[' size=INT ']')?;
 IntegerLiteral: // same name as infer IntLiteral creates minor conflicts
-    sign=('+' | '-')? value=INT suffix=INT_PREFIX;
+    sign=('+' | '-')? value=INT suffix=INT_PREFIX?;
 
 terminal INT_PREFIX: /[su][1-9][0-9]{0,8}/; // 2^29-1 backend
 terminal BOOL returns boolean: /(true|false)/;

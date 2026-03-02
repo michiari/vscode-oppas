@@ -47,7 +47,7 @@ export function inferType(
     type = createBooleanType(node);
   } else if (isIntLiteral(node)) {
     //check for inner conflicts
-    if (!node.literal.suffix || node.literal.value === undefined) {
+    if (node.literal.value === undefined) {
       return createErrorType(`Incomplete integer literal`, node);
     }
     if (node.literal.sign === '-' && node.literal.suffix && node.literal.suffix[0] !== 's') {
@@ -55,10 +55,17 @@ export function inferType(
     }
 
     try {
-      var interpetedSuffix = parseTag(node.literal.suffix);
-
+      if (node.literal.suffix) {
+        var interpetedSuffix = parseTag(node.literal.suffix);
+      } else {
+        var interpetedSuffix = {
+          signed: node.literal.sign === '-',
+          width: Math.floor(Math.max(1, Math.log2(node.literal.value))) + 1 + Number(node.literal.sign === '-'),
+        }
+      }
+      
       if (interpetedSuffix.width >> 29 !== 0) {
-        type = createErrorType('The wisth of integers can only be up to (2^29)-1');
+        type = createErrorType('The width of integers can only be up to (2^29)-1');
       } else if (node.literal.value >= Math.pow(2, interpetedSuffix.width)) {
         type = createErrorType(
           `Value ${node.literal.value} does not fit into integer with width ${interpetedSuffix.width}`,

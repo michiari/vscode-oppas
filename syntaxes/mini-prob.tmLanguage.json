@@ -31,14 +31,6 @@
           "include": "#string-character-escape"
         }
       ]
-    },
-    {
-      "name": "storage.type.int-prefix.mini-prob",
-      "match": "\\b[su][1-9][0-9]*\\b"
-    },
-    {
-      "name": "keyword.control.boolValue.mini-prob",
-      "match": "\\b(true|false)\\b"
     }
   ],
   "repository": {

@@ -259,7 +259,7 @@ export interface IntegerLiteral extends AstNode {
     readonly $container: IntLiteral;
     readonly $type: 'IntegerLiteral';
     sign?: '+' | '-';
-    suffix: string;
+    suffix?: string;
     value: number;
 }
 
