@@ -18,7 +18,7 @@ Decl:
 Func:
     name=ID '(' params=ParamList? ')' '{'
         (declarations+=Decl ';')*
-        body=Block
+        body=Block?
     '}';
 FuncCall:
     ref=[Func:ID] '(' argumentList=ArgList? ')';

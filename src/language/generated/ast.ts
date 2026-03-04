@@ -216,7 +216,7 @@ export function isFileImport(item: unknown): item is FileImport {
 export interface Func extends AstNode {
     readonly $container: Program;
     readonly $type: 'Func';
-    body: Block;
+    body?: Block;
     declarations: Array<Decl>;
     name: string;
     params?: ParamList;
