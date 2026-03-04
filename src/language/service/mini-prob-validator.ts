@@ -511,7 +511,7 @@ export class MiniProbValidator {
   checkObservationCondition(node: Observation, accept: ValidationAcceptor) {
     const map = this.getTypeCache();
     const conditionType = inferType(node.condition, map);
-    if (!isBooleanType(conditionType)) {
+    if (!(isBooleanType(conditionType) || isIntegerType(conditionType))) {
       accept('error', 'Only boolean expressions can be observed', {
         node,
         property: 'condition',

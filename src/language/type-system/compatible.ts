@@ -35,13 +35,9 @@ export function isCompatible(left: TypeDescription, right: TypeDescription): boo
       return false;
     }
   }
-  //handle extra 0 and 1 assingments to boolean types
-  if (isBooleanType(left) && isIntegerType(right)) {
-    if (!right.signed && right.width === 1) {
-      return true;
-    } else if (!right.signed && right.literal && right.literal.literal.value <= 1) {
-      return true;
-    }
+  // Integers are always automatically converted to Booleans and vice versa
+  if ((isBooleanType(left) && isIntegerType(right)) || (isBooleanType(right) && isIntegerType(left))) {
+    return true;
   }
 
   // Otherwise just match on the discriminant
