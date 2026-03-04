@@ -2,6 +2,15 @@
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/tasks.json
+
+# Dependency and build outputs
 node_modules/
 out/
-src/syntaxes
+
+# Langium-generated source artifacts are intentionally committed.
+# Keep these tracked so fresh checkouts build and run without an extra generate step.
+!src/language/generated/
+!syntaxes/mini-prob.tmLanguage.json
+
+# Packaged extension artifact
+oppas-*.vsix
