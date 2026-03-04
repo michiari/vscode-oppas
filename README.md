@@ -1,9 +1,9 @@
-# MiniProb Language Support
+# OPPAS Language Support
 
 [![Version](https://img.shields.io/badge/version-0.0.8-blue.svg)](https://github.com/michiari/vscode-oppas)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-MiniProb Language Support adds simple syntax highlighting and validation for the MiniProb probabilistic programming language in Visual Studio Code.
+OPPAS Language Support adds simple syntax highlighting and validation for the MiniProb probabilistic programming language in Visual Studio Code.
 
 ---
 
@@ -51,6 +51,12 @@ To build the extension from source:
 ### Debugging the Extension
 
 When developing and debugging the extension:
+
+If you changed `src/language/mini-prob.langium`, regenerate artifacts before building:
+
+```bash
+npm run langium:generate
+```
 
 1. **Build for development:**
    ```bash
