@@ -19,7 +19,6 @@ import {
   BinaryExpression,
   LogicalNegation,
   IntegerLiteral,
-  Query,
   Observation,
   Program,
 } from '../generated/ast.js';

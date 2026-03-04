@@ -1,6 +1,6 @@
 {
-  "name": "mini-prob",
-  "description": "This extension is a language support for developers using MIniProb, a PPL which can be model checked.",
+  "name": "oppas",
+  "description": "This extension is a language support for developers using MiniProb, a PPL which can be model checked.",
   "version": "0.0.8",
   "files": [
     "bin",
@@ -58,7 +58,7 @@
     "node": "18.19.1",
     "npm": "10.2.4"
   },
-  "displayName": "MiniProb",
+  "displayName": "OPPAS",
   "engines": {
     "vscode": "^1.67.0",
     "node": ">=18.0.0"
