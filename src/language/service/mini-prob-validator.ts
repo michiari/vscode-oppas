@@ -454,7 +454,7 @@ export class MiniProbValidator {
   checkIntegerLiteral(node: IntegerLiteral, accept: ValidationAcceptor) {
     const cst = node.$cstNode;
     if (!cst) return;
-    if (cst.length > 1 && /^(?![+-]?\d+[uUsS]\d+$).+/.test(cst.text)) {
+    if (cst.length > 1 && /^(?![+-]?\d+([uUsS]\d+)?$).+/.test(cst.text)) {
       accept('error', 'No spaces are allowed in integer literals', { node });
     }
   }
