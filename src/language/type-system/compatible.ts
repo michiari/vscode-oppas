@@ -26,8 +26,8 @@ export function isCompatible(left: TypeDescription, right: TypeDescription): boo
     }
   }
   if (isArrayIntegerType(left) && isArrayIntegerType(right)) {
-    var leftTypeOf = left.elementType as IntegerTypeDescription;
-    var rightTypeOf = right.elementType as IntegerTypeDescription;
+    const leftTypeOf = left.elementType as IntegerTypeDescription;
+    const rightTypeOf = right.elementType as IntegerTypeDescription;
     if (
       (leftTypeOf.signed ? leftTypeOf.width - 1 : leftTypeOf.width) <
       (rightTypeOf.signed ? rightTypeOf.width - 1 : rightTypeOf.width)

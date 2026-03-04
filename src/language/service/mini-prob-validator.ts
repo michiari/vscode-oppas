@@ -115,16 +115,16 @@ export class MiniProbValidator {
    * @param accept    Callback to emit validation messages.
    */
   checkAssignments(node: Assignment, accept: ValidationAcceptor) {
-    var map = this.getTypeCache();
+    const map = this.getTypeCache();
     const leftType = inferType(node.leftValue, map);
-    var rightType;
+    let rightType;
     if (node.expression) {
       rightType = inferType(node.expression, map);
     } else {
       rightType = inferType(node.distribution, map);
     }
 
-    var skipAssignErr = false;
+    let skipAssignErr = false;
     if (isErrorType(leftType)) {
       skipAssignErr = true;
       accept('error', leftType.message, {
@@ -158,9 +158,9 @@ export class MiniProbValidator {
    * @param accept    Callback to emit validation messages.
    */
   checkFunctionCalls(node: FuncCall, accept: ValidationAcceptor) {
-    var refNode = node.ref.ref;
+    const refNode = node.ref.ref;
     if (refNode) {
-      var noMatchParams = refNode.params?.parameters.length !== node.argumentList?.arguments.length;
+      const noMatchParams = refNode.params?.parameters.length !== node.argumentList?.arguments.length;
       if (noMatchParams) {
         accept('error', 'Number of parameters does not match.', {
           node,

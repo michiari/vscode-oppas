@@ -104,7 +104,7 @@ export function inferType(
 }
 
 function inferLvalReference(lval: Lval, cache: Map<AstNode, TypeDescription>): TypeDescription {
-  var referencedNode = lval.ref.ref;
+  const referencedNode = lval.ref.ref;
   if (!referencedNode) {
     return createErrorType('Missing linked reference', lval);
   }
@@ -128,7 +128,7 @@ function inferBinaryExpression(
         return createErrorType('Division by 0 not possible', expr);
       }
 
-      var resultingWidth = 0;
+      let resultingWidth = 0;
       if (expr.operator === '%') {
         resultingWidth = (left.signed ? left.width - 1 : left.width) <= (right.signed ? right.width - 1 : right.width)
           ? left.width
@@ -163,7 +163,7 @@ function inferDistribution(
   // }
   //return createDistributionType(args, distribution);
 
-  var paramType;
+  let paramType;
   switch (distribution.name) {
     case 'bernoulli':
       return createIntegerType(1, false);
@@ -184,7 +184,7 @@ function inferProbabilisticAssignment(
   assignment: ProbabilisticAssignment,
   cache: Map<AstNode, TypeDescription>
 ): TypeDescription {
-  var head = inferType(assignment.head, cache);
+  const head = inferType(assignment.head, cache);
   const fallbacks = [];
   for (const fallback of assignment.fallbacks) {
     fallbacks.push(inferType(fallback, cache));

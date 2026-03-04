@@ -44,7 +44,7 @@ export class MiniProbScopeProvider extends DefaultScopeProvider {
       const programFunctions = program.functions.filter(this.isRealFunc);
       const includeFileImports = program.fileImports && program.fileImports.length > 0;
 
-      var importedDescriptions: Stream<AstNodeDescription> = stream();
+      let importedDescriptions: Stream<AstNodeDescription> = stream();
       if (isFuncCall(container)) {
         const descriptions = this.descriptionCache
           .get(
@@ -64,13 +64,13 @@ export class MiniProbScopeProvider extends DefaultScopeProvider {
         //You’re running into the “ghost” functions because Langium’s default scope provider will happily invent a placeholder Func for every unresolved identifier—so when you do
 
         //include declarations from first unclosed function(missing '}'), generally the one in which input is happening(quality of live).
-        var enclosingUnfinishedFunc = programFunctions.find((func) => {
+        const enclosingUnfinishedFunc = programFunctions.find((func) => {
           const text = func.$cstNode?.text ?? '';
           const opens = (text.match(/{/g) || []).length;
           const closes = (text.match(/}/g) || []).length;
           return closes < opens;
         });
-        var localDeclarationsDescriptions: AstNodeDescription[] = [];
+        let localDeclarationsDescriptions: AstNodeDescription[] = [];
         if (enclosingUnfinishedFunc) {
           localDeclarationsDescriptions = enclosingUnfinishedFunc.declarations.flatMap((decl) =>
             decl.names.map((n) => this.astNodeDescriptionProvider.createDescription(decl, n))
@@ -176,7 +176,7 @@ export class MiniProbScopeProvider extends DefaultScopeProvider {
       );
       return importedFuncDescriptions.getAllElements();
     } else if (targetNodeType === Decl) {
-      var temp = this.indexManager.allElements(Decl, new Set<string>(importUris));
+      const temp = this.indexManager.allElements(Decl, new Set<string>(importUris));
       const importedDeclDescriptions = this.descriptionCache.get(
         currentUri,
         importKey + targetNodeType,
