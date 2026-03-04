@@ -11,7 +11,7 @@ export const MiniProbLanguageMetaData = {
     languageId: 'mini-prob',
     fileExtensions: ['.pomc'],
     caseInsensitive: false,
-    mode: 'development'
+    mode: 'production'
 } as const satisfies LanguageMetaData;
 
 export const MiniProbParserConfig: IParserConfig = {

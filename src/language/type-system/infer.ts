@@ -55,10 +55,11 @@ export function inferType(
     }
 
     try {
+      let interpetedSuffix;
       if (node.literal.suffix) {
-        var interpetedSuffix = parseTag(node.literal.suffix);
+        interpetedSuffix = parseTag(node.literal.suffix);
       } else {
-        var interpetedSuffix = {
+        interpetedSuffix = {
           signed: node.literal.sign === '-',
           width: Math.floor(Math.max(1, Math.log2(node.literal.value))) + 1 + Number(node.literal.sign === '-'),
         }
