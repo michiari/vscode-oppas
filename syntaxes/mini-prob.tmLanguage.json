@@ -10,7 +10,7 @@
     },
     {
       "name": "keyword.control.mini-prob",
-      "match": "\\b(Bernoulli|Uniform|bool|catch|else|if|observe|query|throw|try|while)\\b|\\B(#include)\\b|\\b(program:)\\B"
+      "match": "\\b(bernoulli|bool|catch|else|if|observe|query|throw|try|uniform|while)\\b|\\B(#include)\\b|\\b(program:)\\B"
     },
     {
       "name": "string.quoted.double.mini-prob",

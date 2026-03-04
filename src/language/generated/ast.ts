@@ -44,10 +44,9 @@ export type MiniProbKeywordNames =
     | "=="
     | ">"
     | ">="
-    | "Bernoulli"
-    | "Uniform"
     | "["
     | "]"
+    | "bernoulli"
     | "bool"
     | "catch"
     | "else"
@@ -57,6 +56,7 @@ export type MiniProbKeywordNames =
     | "query"
     | "throw"
     | "try"
+    | "uniform"
     | "while"
     | "{"
     | "||"
@@ -189,7 +189,7 @@ export interface Distribution extends AstNode {
     readonly $container: Assignment;
     readonly $type: 'Distribution';
     lower?: Expression;
-    name: 'Bernoulli' | 'Uniform';
+    name: 'bernoulli' | 'uniform';
     p?: Expression;
     q?: Expression;
     upper?: Expression;

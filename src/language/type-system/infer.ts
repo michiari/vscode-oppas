@@ -165,9 +165,9 @@ function inferDistribution(
 
   var paramType;
   switch (distribution.name) {
-    case 'Bernoulli':
+    case 'bernoulli':
       return createIntegerType(1, false);
-    case 'Uniform':
+    case 'uniform':
       paramType = inferType(distribution.upper, cache);
 
       if (isIntegerType(paramType)) {

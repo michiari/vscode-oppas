@@ -332,8 +332,8 @@ export class MiniProbValidator {
    */
   checkDistributions(node: Distribution, accept: ValidationAcceptor) {
     if (
-      (node.name === 'Bernoulli' && (!node.q || !node.p)) ||
-      (node.name === 'Uniform' && (!node.upper || !node.lower))
+      (node.name === 'bernoulli' && (!node.q || !node.p)) ||
+      (node.name === 'uniform' && (!node.upper || !node.lower))
     ) {
       accept('error', 'Distributions expect two arguments', { node });
       return;
@@ -344,13 +344,13 @@ export class MiniProbValidator {
     let params: Array<{ property: 'q' | 'p' | 'lower' | 'upper'; expr: AstNode | undefined }> = [];
 
     switch (node.name) {
-      case 'Bernoulli':
+      case 'bernoulli':
         params = [
           { property: 'p', expr: node.p },
           { property: 'q', expr: node.q },
         ];
         break;
-      case 'Uniform':
+      case 'uniform':
         params = [
           { property: 'lower', expr: node.lower },
           { property: 'upper', expr: node.upper },

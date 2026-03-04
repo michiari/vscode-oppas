@@ -55,8 +55,8 @@ Arg:
     expression=Expression; //only expre and no ref symbol
 
 Distribution:
-    (name='Bernoulli' '(' p=Expression ',' q=Expression ')') |
-    (name='Uniform' '(' lower=Expression ',' upper=Expression ')');
+    (name='bernoulli' '(' p=Expression ',' q=Expression ')') |
+    (name='uniform' '(' lower=Expression ',' upper=Expression ')');
 ProbChoice:
     '{'numerator=Expression ':' denominator=Expression '}';
 
