@@ -57,7 +57,7 @@ export function registerValidationChecks(services: MiniProbServices) {
     BinaryExpression: validator.checkBinaryExpressions,
     LogicalNegation: validator.checkUnaryExpressions,
     IntegerLiteral: validator.checkIntegerLiteral,
-    Program: validator.checkMainOccurrences
+    Program: validator.checkOneFunction
   };
   registry.register(checks, validator);
 }
@@ -257,23 +257,16 @@ export class MiniProbValidator {
   }
 
   /**
-   * Locate a main nad only one main function definition
+   * Ensure at least one function is defined in the program.
    * 
-   * - main() must exist only once
+   * - At least one function must be defined in each program.
    *
-   * @param node      The Func AST node.
+   * @param node      The Program AST node.
    * @param accept    Callback to emit validation messages.
    */
-  checkMainOccurrences(node: Program, accept: ValidationAcceptor) {
-     const functionNames = node.functions.filter(f => f.name === "main").map((f) => f.name);
-     if (functionNames.length <= 0) {
-      accept("error", 'Each program needs a \'main()\' function.', {
-        node,
-        property: "functions"
-      });
-     }
-     if (functionNames.length > 1) {
-      accept("error", 'Each program must only contain a single \'main\' function.', {
+  checkOneFunction(node: Program, accept: ValidationAcceptor) {
+     if (node.functions.length === 0) {
+      accept("error", 'At least one function must be defined in the program.', {
         node,
         property: "functions"
       });
