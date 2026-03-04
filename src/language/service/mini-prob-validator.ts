@@ -48,7 +48,6 @@ export function registerValidationChecks(services: MiniProbServices) {
     Lval: validator.checkArrayAccess,
     FuncCall: validator.checkFunctionCalls,
     Func: validator.checkFunctionDefinitions,
-    Query: validator.checkQueryFunctionCall,
     Decl: validator.checkDeclarationIds,
     ProbChoice: validator.checkProbabilisticChoices,
     Assignment: validator.checkAssignments,
@@ -271,35 +270,6 @@ export class MiniProbValidator {
         property: "functions"
       });
      }
-  }
-
-  /**
-   * Validate query.
-   *
-   * - Checks if function has at least one parameter.
-   * - Ensures at least one value-result(by reference) is existent.
-   *
-   * @param node      The Query AST node.
-   * @param accept    Callback to emit validation messages.
-   */
-  checkQueryFunctionCall(node: Query, accept: ValidationAcceptor) {
-    var refFunction = node.function.ref.ref;
-    if (refFunction) {
-      const parameters = refFunction.params?.parameters;
-      if (!parameters) {
-        accept('error', 'Queried function must usee at least one argument.', {
-          node,
-        });
-      } else {
-        for (const param of parameters!) {
-          if (param.byRef) return;
-        }
-        accept('error', 'At least one parameter must be value-result(by reference).', {
-          node,
-          property: 'function',
-        });
-      }
-    }
   }
 
   /**
